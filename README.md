@@ -1,125 +1,143 @@
-<h1 align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=3000&pause=1000&color=6C63FF&center=true&vCenter=true&width=600&lines=Hi+%F0%9F%91%8B%2C+I'm+Sushma+Varma;AI+Engineer;Generative+AI+%7C+Machine+Learning+%7C+LLMs;Building+agentic+systems+that+ship" alt="Typing SVG" />
-</h1>
+<div align="center">
 
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=SushVarma&label=Profile%20Views&color=6C63FF&style=flat" alt="Profile Views" />
-  <a href="mailto:sushma.verma@instalogic.in"><img src="https://img.shields.io/badge/Email-sushma.verma%40instalogic.in-6C63FF?style=flat&logo=gmail&logoColor=white" /></a>
-  <a href="https://github.com/SushVarma"><img src="https://img.shields.io/github/followers/SushVarma?label=Follow&style=social" /></a>
-</p>
+<!-- Animated intro line -->
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=3000&pause=800&color=00D9FF&center=true&vCenter=true&width=650&lines=GenAI+%2F+LLM+Engineer;I+build+RAG+systems+that+survive+real+users;Sole+AI+engineer+%40+Instalogic+Solutions;Multi-tenant+%7C+Agentic+%7C+Production-first" alt="Typing SVG" />
 
----
+### Hi, I'm Sushma Varma 👋
 
-### 🧠 About Me
+I design and ship production RAG and agentic AI systems — the kind that hold up under real traffic, real security review, and real cost constraints, not just a demo. I was the first and only AI engineer at my current company, which meant building the infrastructure layer *before* I could build anything on top of it.
 
-I'm an **AI Engineer** who builds practical, end-to-end AI systems — not just notebooks. My work sits at the intersection of **agentic architectures**, **LLM orchestration**, and **production-grade Python engineering**: RAG pipelines that route intelligently, autonomous agents that take real actions, and dashboards that turn model output into decisions.
+📍 Mumbai, India &nbsp;·&nbsp; 🔗 [Portfolio](https://portfolio-nnqt6t6d1-sushvarma2-6895s-projects.vercel.app/) &nbsp;·&nbsp; 💼 [LinkedIn](https://linkedin.com/in/sushmavarma) &nbsp;·&nbsp; ✉️ sushvarma2@gmail.com
 
-- 🔭 Currently building **autonomous agent systems** — job-search automation, idea-validation pipelines, and real-time analytics powered by LLMs
-- 🌱 Deep in **agentic frameworks** (LangGraph, LangChain, Pydantic AI) and **local/open-weight LLMs** (Hugging Face, Qwen)
-- 🎯 Focused on systems that are **deterministic where it matters** — scoring, evaluation, and guardrails around generative components, not just "prompt and hope"
-- 💬 Ask me about RAG routing, agent orchestration, or turning an LLM prototype into something that survives contact with real data
+</div>
 
----
+<br>
 
-### 🛠️ Tech Stack
+## By the numbers
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
-  <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" />
-  <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" />
-  <img src="https://img.shields.io/badge/LangGraph-1C3C3C?style=for-the-badge&logo=graphql&logoColor=white" />
-  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white" />
-  <img src="https://img.shields.io/badge/SQL%20Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" />
-</p>
+Not vanity metrics — every figure below is something I personally measured, tuned, or shipped.
 
----
+| | |
+|---|---|
+| ⚡ **~22s → ~45ms** | Warm query latency cut on a 24,000+ vector multi-tenant corpus (hybrid Qdrant + MongoDB retrieval) |
+| 👥 **100,000+** | Daily active users served by a multilingual banking assistant I built (90% intent-routing, 90% translation accuracy) |
+| 🎯 **85%** | Scoring precision across every record in a deterministic AI job/candidate matching engine |
+| 📄 **19,000+ / 500+** | Chunks / source documents in a government-scale RAG corpus, with a recall@k / MRR eval harness to regression-test retrieval quality |
+| 🧪 **45** | Security-and-correctness regression tests I added after leading a full remediation pass (auth gaps, SSRF exposure, cross-tenant isolation) |
+| 🌐 **7** | Scripts a single OCR engine I built reads natively — English, Hindi, Marathi, Bengali, Telugu, Kannada, Urdu |
 
-### 🚀 Featured Projects
+<br>
 
-<table>
-<tr>
-<td width="50%" valign="top">
+## What I actually think about when I build
 
-**[🕵️ spacy — Agentic RAG for NASA SE Handbook](https://github.com/SushVarma/spacy)**
-Conversational RAG system with intelligent query routing between Direct RAG and Agentic pipelines over the NASA Systems Engineering Handbook.
-`Python` `RAG` `LangGraph`
+Most "skills" sections list tools. These are the *decisions* that show up across almost everything I've built — the ones worth asking me about in an interview:
 
-</td>
-<td width="50%" valign="top">
+- **Deterministic core, LLM at the edges.** Scoring, routing, and anything auditable stays in plain Python. The LLM writes the sentence, it doesn't make the call.
+- **Provider-agnostic by default.** Every serious system I build can swap between Bedrock / Hugging Face / Ollama / OpenAI behind one environment variable — because vendor lock-in is a business risk I refuse to hand my employer.
+- **Fail soft, not fail loud.** A dead embedding provider, an unreachable vector store, or a missing API key degrades the system — it doesn't take it down. Every project I ship runs in a zero-key mock mode before it runs with real credentials.
+- **Human-in-the-loop where it matters.** Auto-submitting an application, deciding someone's benefits eligibility, storing a permanent record — an LLM classifies and drafts; a human (or deterministic logic) approves.
 
-**[🤖 agents — Agentic Framework Playground](https://github.com/SushVarma/agents)**
-Implementations of agentic frameworks including Pydantic AI and LangChain — patterns for tool use, planning, and multi-step reasoning.
-`Python` `Pydantic AI` `LangChain`
+<br>
 
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+## How a request actually moves through one of my systems
 
-**[💼 AI-Service-Concierge](https://github.com/SushVarma/AI-Service-Concierge)**
-WhatsApp/web AI assistant handling employee benefits verification, eligibility checks, and service booking — with seamless human handoff.
-`Python` `Conversational AI` `Automation`
+```mermaid
+flowchart LR
+    A[Ingest: PDF / DOCX / image / web] --> B[OCR + semantic chunking]
+    B --> C[Embed — pluggable provider]
+    C --> D{Vector layer}
+    D -->|live serving| E[(Qdrant · ANN)]
+    D -->|durable + fallback| F[(MongoDB)]
+    E --> G[Retrieve + rerank + fuse]
+    F -.emergency scan.-> G
+    G --> H[LLM generation — provider-agnostic]
+    H --> I[Streamed, guarded, audited response]
 
-</td>
-<td width="50%" valign="top">
+    style E fill:#00D9FF,color:#000
+    style F fill:#4CAF50,color:#000
+    style H fill:#FF6B6B,color:#000
+```
 
-**[📊 renew_intel — Renewal Risk Intelligence](https://github.com/SushVarma/renew_intel)**
-Helps business ops and customer success teams spot at-risk contract renewals and surface root causes.
-`Python` `Analytics` `LLM`
+*(This is a real architecture I've shipped, not a diagram for the README's sake — nlucron, my company's shared RAG backbone, works exactly like this.)*
 
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+<br>
 
-**[🎫 Support_AI — Ticket Intelligence System](https://github.com/SushVarma/Support_AI)**
-End-to-end system over a support ticket dataset: natural-language querying, rule-based anomaly detection, a REST API, and a minimal web UI.
-`Python` `REST API` `NL Querying`
+## Featured builds
 
-</td>
-<td width="50%" valign="top">
+| Project | What it does | Stack |
+|---|---|---|
+| **[nlucron](#)** — shared RAG backbone | Multi-tenant ingestion + retrieval platform I designed and built solo; every AI product at my company runs on it | `FastAPI` `Qdrant` `MongoDB` `Bedrock` |
+| **[DMRR](#)** — government platform | RAG chatbot + AI proposal-readiness scorer + duplicate detection for a state disaster-management department | `LangChain` `LangGraph` `Bedrock Nova` |
+| **[MediOra](#)** — talent/education AI | Deterministic scoring engine + skill-alias resolution after proving raw embeddings weren't precise enough | `FastAPI` `.NET integration` |
+| **[Renewal Intelligence Engine](#)** | Churn-risk scoring across 6 messy B2B data sources with an auditable, LLM-at-the-edges design | `pandas` `HuggingFace` |
+| **[Real-Time Market Insights](#)** | Kafka-style Redis Streams pipeline → sentiment scoring → LLM summaries → live WebSocket + Grafana dashboard | `Redis Streams` `FastAPI` `Grafana` |
+| **[Travel Voice Assistant](#)** | Fully local, free voice agent — mic → Whisper STT → LangGraph ReAct agent → streamed Piper TTS | `LangGraph` `Whisper` `Piper` |
 
-**🧪 In Progress (private/local)**
-Autonomous job-search & auto-apply agent (LangGraph + FastAPI), a LangGraph idea-validation pipeline with adversarial critique, and a Redis Streams + LLM real-time market-insights dashboard.
-`LangGraph` `FastAPI` `Redis`
+*(Swap the `#` links for your actual repo URLs once each is public.)*
 
-</td>
-</tr>
-</table>
+<br>
 
----
+## Stack
 
-### 📈 GitHub Stats
+<div align="center">
 
-<p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=SushVarma&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SushVarma&layout=compact&theme=tokyonight&hide_border=true" />
-</p>
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Qdrant](https://img.shields.io/badge/Qdrant-DC244C?style=for-the-badge&logo=qdrant&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=SushVarma&theme=tokyonight&hide_border=true" />
-</p>
+</div>
 
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=SushVarma&theme=darkhub&no-frame=true&row=1&column=6" />
-</p>
+<br>
 
----
+## GitHub activity
 
-### 🐍 Contribution Graph
+<div align="center">
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/SushVarma/SushVarma/output/github-contribution-grid-snake.svg" alt="Snake animation" />
-</p>
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=SushVarma&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" />
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SushVarma&layout=compact&theme=tokyonight&hide_border=true" />
 
-<sub><em>Animated via the <code>.github/workflows/snake.yml</code> action — runs automatically once GitHub Actions is enabled on this repo.</em></sub>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=SushVarma&theme=tokyonight&hide_border=true" />
 
----
+</div>
 
-<p align="center">
-  <em>Thanks for stopping by — let's build something intelligent together.</em>
-</p>
+<br>
+
+## Off the clock
+
+I don't think a wall of badges tells you who someone actually is, so — genuinely, not for the algorithm:
+
+- 📖 I read webtoons and watch dramas on a near-daily basis — it's my actual unwind, not a "hobbies" filler line.
+- 🗣️ I'm picking up Japanese (N5) and Korean (A1) on the side — partly the dramas' fault, partly just liking the process of getting good at something slowly.
+- 👨‍👩‍👧 Family time is non-negotiable for me — it's where I recharge, not where I fit work in around.
+- 😴 I protect my sleep. I've shipped better code at 9am after real rest than at midnight running on nothing — I plan my work around that, not against it.
+
+If none of that shows up in a commit history, that's the point — it's what makes the commit history sustainable.
+
+<br>
+
+## Currently
+
+```python
+class Sushma:
+    def __init__(self):
+        self.role = "AI / LLM Engineer"
+        self.building = "nlucron — a multi-tenant RAG platform, from scratch, solo"
+        self.learning = ["agentic orchestration at scale", "eval-driven RAG development"]
+        self.open_to = "AI Agentic Engineer / GenAI roles"
+
+    def get_in_touch(self):
+        return "sushvarma2@gmail.com"
+```
+
+<br>
+
+<div align="center">
+
+📫 Let's talk — **sushvarma2@gmail.com** &nbsp;|&nbsp; [LinkedIn](https://linkedin.com/in/sushmavarma) &nbsp;|&nbsp; [Portfolio](https://portfolio-nnqt6t6d1-sushvarma2-6895s-projects.vercel.app/)
+
+</div>
