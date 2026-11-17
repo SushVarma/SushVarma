@@ -8,6 +8,18 @@
 
 📍 Mumbai, India &nbsp;·&nbsp; 🔗 [Portfolio](https://portfolio-nnqt6t6d1-sushvarma2-6895s-projects.vercel.app/) &nbsp;·&nbsp; 💼 [LinkedIn](https://linkedin.com/in/sushmavarma) &nbsp;·&nbsp; ✉️ sushvarma2@gmail.com
 
+<br>
+
+![status](https://img.shields.io/badge/status-operational-00D9FF?style=flat-square&labelColor=0F2027)
+![fail_mode](https://img.shields.io/badge/fail_mode-soft-4CAF50?style=flat-square&labelColor=0F2027)
+![oncall](https://img.shields.io/badge/on--call-self-FFD166?style=flat-square&labelColor=0F2027)
+![response_time](https://img.shields.io/badge/response_time-%3C24h-FF6B6B?style=flat-square&labelColor=0F2027)
+![uptime](https://img.shields.io/badge/uptime-1.7y-00D9FF?style=flat-square&labelColor=0F2027)
+
+<br>
+
+[`metrics`](#system_metrics) · [`agents`](#agent_lab) · [`architecture`](#pattern_core) · [`experiments`](#experimental_chamber) · [`postmortems`](#incident_postmortem) · [`shipped`](#deployed_systems) · [`roadmap`](#roadmap_self) · [`building_now`](#currently_building)
+
 </div>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
@@ -44,6 +56,8 @@
 }
 ```
 
+<sub>Press <kbd>Ctrl</kbd> + <kbd>F</kbd> and search "fail-soft" — it shows up more than once in this file. That wasn't an accident either.</sub>
+
 </div>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
@@ -58,7 +72,8 @@ I joined my current company as its **first and only AI engineer** — no infrast
 
 ## `AUDIENCE.ROUTE`
 
-<sub>Pick whichever applies — this profile reads differently depending on why you're here.</sub>
+> [!TIP]
+> Pick whichever box below matches why you're here — or ignore it entirely, everything still reads fine top to bottom.
 
 <details>
 <summary><b>🧑‍💼 I'm a recruiter / hiring manager</b></summary>
@@ -86,18 +101,31 @@ The short version: I build the boring, unglamorous 80% (retrieval quality, fallb
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
+<a name="system_metrics"></a>
 ## `SYSTEM.METRICS`
 
-Not vanity numbers — every figure below is something I personally measured, tuned, or shipped.
+Not vanity numbers — every figure below is something I personally measured, tuned, or shipped.[^1]
 
 | | |
 |---|---|
-| ⚡ **~22s → ~45ms** | Warm query latency cut on a 24,000+ vector multi-tenant corpus (hybrid Qdrant + MongoDB retrieval) |
+| ⚡ **~22s → ~45ms** | Warm query latency cut on a 24,000+ vector multi-tenant corpus (hybrid Qdrant + MongoDB retrieval)[^2] |
 | 👥 **100,000+** | Daily active users served by a multilingual banking assistant I built (90% intent-routing, 90% translation accuracy) |
 | 🎯 **85%** | Scoring precision across every record in a deterministic AI job/candidate matching engine |
 | 📄 **19,000+ / 500+** | Chunks / source documents in a government-scale RAG corpus, with a recall@k / MRR eval harness to regression-test retrieval quality |
 | 🧪 **45** | Security-and-correctness regression tests I added after leading a full remediation pass (auth gaps, SSRF exposure, cross-tenant isolation) |
 | 🌐 **7** | Scripts a single OCR engine I built reads natively — English, Hindi, Marathi, Bengali, Telugu, Kannada, Urdu |
+
+[^1]: No industry benchmarks, no LinkedIn multipliers. I built the eval harness that produced every number here, so I can walk you through exactly how any one of them was measured.
+[^2]: Warm-path speedup, measured against the same corpus, same query — not a bigger machine, a cached layer.
+
+<sub>The cold → warm speedup from that row, worked out:</sub>
+
+$$
+\frac{22000\text{ms}}{45\text{ms}} \approx 489\times
+$$
+
+> [!CAUTION]
+> A metric with no methodology attached is marketing, not engineering. Ask me how any row above was measured — I'd rather defend one real number than list ten soft ones.
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
@@ -143,6 +171,7 @@ flowchart LR
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
+<a name="agent_lab"></a>
 ## `AGENT_LAB`
 
 The agentic pattern I keep coming back to — planner/summarizer/manager agents with a hard boundary between "the agent decides what to do" and "the agent is allowed to act":
@@ -186,6 +215,18 @@ Organized by what each layer is actually for — not 50 badges in a row.
 
 </div>
 
+<sub>Roughly where the hours actually go, not where the badges would have you guess:</sub>
+
+```mermaid
+pie showData
+    title Hours, honestly split
+    "AI systems & agents" : 35
+    "Retrieval / data layer" : 25
+    "Backend / APIs" : 20
+    "Infra & CI/CD" : 12
+    "Eval & regression tests" : 8
+```
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## `MODEL.REGISTRY`
@@ -204,6 +245,7 @@ I pick the model per feature, not per project — a proposal-readiness scorer an
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
+<a name="pattern_core"></a>
 ## `PATTERN.CORE` — provider-agnostic model routing
 
 ```python
@@ -230,8 +272,12 @@ class LLMFactory:
 # degrades one feature — it never takes the platform down.
 ```
 
+> [!IMPORTANT]
+> This snippet is illustrative, not literal production code. The real implementation carries retries, structured logging, and per-feature timeouts this version skips for clarity — ask me for the shape of those if you're evaluating the actual architecture.
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
+<a name="experimental_chamber"></a>
 ## `EXPERIMENTAL.CHAMBER`
 
 Real engineering decisions, logged the way I'd want a teammate to find them later — hypothesis, what I actually did, what I learned. No filler entries.
@@ -254,6 +300,14 @@ Real engineering decisions, logged the way I'd want a teammate to find them late
 **What I did:** ran comparative cost and architecture analyses across self-hosted deployment vs. AWS Bedrock for real infra-spend decisions.
 **Result:** migrated the primary LLM layer to Bedrock Nova via the Converse API for reliability and ops overhead — but kept the abstraction so a switch back to Ollama for on-prem/data-residency needs is a config change, not a rewrite.
 
+```diff
+- provider = OllamaLLM(self_hosted=True)       # cheaper per-token, ours to operate
++ provider = NovaLLM(model_id=NOVA_MODEL_ID)   # Bedrock Converse API — reliability over raw cost
+```
+
+> [!WARNING]
+> "Cheaper per token" and "cheaper overall" are different claims. Self-hosted wins on paper until you price in GPU uptime, ops hours, and the on-call burden of a model server you're now responsible for keeping alive.
+
 </details>
 
 <details>
@@ -265,6 +319,72 @@ Real engineering decisions, logged the way I'd want a teammate to find them late
 **Result:** fallback chains cost more code than a single dependency — but a document that would've silently failed OCR now degrades to a second engine instead of dropping data.
 
 </details>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+<a name="incident_postmortem"></a>
+## `INCIDENT.POSTMORTEM` — career milestones, written up the way I write up a production incident
+
+<sub>Blameless, timestamped, closed with action items — because a résumé bullet with no root cause is just a claim.</sub>
+
+> [!NOTE]
+> Borrowed format, not a bit: these are the two moments that most shaped how I build. Writing them up as incidents instead of achievements is the honest version of the story.
+
+<details>
+<summary><b>🔴 INCIDENT-001 · SEV-1 · Status: <code>RESOLVED</code> — "Company had an AI roadmap before it had an AI engineer"</b></summary>
+<br>
+
+```yaml
+severity: SEV-1
+detected_by: me, on day one
+affected_system: every planned AI feature at the company
+status: resolved
+duration: ongoing mitigation, ~1.7y and counting
+```
+
+**Impact:** Every AI feature on the roadmap assumed infrastructure — ingestion, retrieval, a model layer — that did not exist yet. Nobody could ship anything without first building the thing underneath it.
+
+**Root cause:** Organizational, not technical. The roadmap was written assuming "the AI engineer" was a role that comes with a platform attached. I was the first hire into that role. There was no platform.
+
+**Resolution:** Stopped building features. Built **nlucron** — a shared, multi-tenant RAG backbone — first, so every feature after it could be a config change on top of shared infrastructure instead of its own bespoke pipeline.
+
+**Action items:**
+- [x] Multi-tenant ingestion + retrieval platform, built solo
+- [x] Provider-agnostic model routing so no feature is single-vendor-locked
+- [x] Zero-key mock mode so every downstream team can build against it without touching prod credentials
+- [ ] Hand off enough of this that I'm no longer the only SPOF — *in progress, see `ROADMAP.SELF`*
+
+</details>
+
+---
+
+<details>
+<summary><b>🟠 INCIDENT-002 · SEV-2 · Status: <code>RESOLVED</code> — "Cross-tenant isolation gap found during a security review"</b></summary>
+<br>
+
+```yaml
+severity: SEV-2
+detected_by: internal security remediation pass
+affected_system: nlucron — multi-tenant RAG backbone
+status: resolved
+regression_tests_added: 45
+```
+
+**Impact:** A full remediation pass surfaced auth gaps, SSRF exposure, and a cross-tenant isolation weakness — the kind of thing that doesn't show up until someone goes looking for it on purpose.
+
+**Root cause:** Missing regression coverage on the auth boundary. The system worked under every case I'd thought to test, which is a different claim from "the system is secure."
+
+**Resolution:** Closed every gap found, then — instead of closing the ticket — wrote 45 security-and-correctness regression tests so the *next* refactor can't silently reopen the same hole.
+
+**Action items:**
+- [x] Auth gaps closed
+- [x] SSRF exposure closed
+- [x] Cross-tenant isolation enforced + tested
+- [x] 45 regression tests committed, running in CI, not just run once and forgotten
+
+</details>
+
+<sub>**Review board:** Sushma Varma — author, reviewer, and sole on-call. *(That's the joke in `INCIDENT-001` doing its job.)*</sub>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
@@ -296,6 +416,7 @@ RAG that "feels" better isn't RAG that *is* better — so I built a retrieval re
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
+<a name="roadmap_self"></a>
 ## `ROADMAP.SELF`
 
 Where I actually am, honestly plotted — not a wish list.
@@ -309,6 +430,16 @@ FOUNDATIONS ──▶ MODELS ──▶ RAG ──▶ AGENTS ──▶ MULTIMODAL
 
 Current edge: multimodal is the newest muscle — voice pipelines (Whisper/Piper) and vision-based image summarization in production — and eval-driven RAG development is the thing I want to get sharper at next, not because it's trendy but because "feels better" isn't a metric I trust myself with anymore.
 
+```mermaid
+timeline
+    title From zero infra to production, in order
+    Day 1 : First & only AI engineer : No existing AI infra
+    ~Month 3 : nlucron shipped : Multi-tenant RAG backbone, built solo
+    ~Month 9 : Security remediation : Auth gaps found and closed : 45 regression tests added
+    ~Month 14 : 100K+ daily users : Multilingual banking assistant live
+    Now : Eval-driven RAG : Recall@k / MRR harness in production
+```
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## `OBSESSIONS.LOG`
@@ -318,6 +449,7 @@ Current edge: multimodal is the newest muscle — voice pipelines (Whisper/Piper
 - Local-first fallback (Ollama, on-device vision) — not everything needs a cloud round-trip, and not every client can send data to one.
 - Retrieval evaluation — a RAG system without a recall@k number is a RAG system I don't fully trust yet, including my own.
 - Fail-soft design — the failure mode of a feature should be "worse," never "down."
+- ~~Perfectionism before shipping~~ Ship, measure, iterate — I had to unlearn the first one on purpose.
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
@@ -334,7 +466,7 @@ I don't think a wall of badges tells you who someone actually is, so — genuine
 - 👨‍👩‍👧 Family time is non-negotiable for me — it's where I recharge, not where I fit work in around.
 - 😴 I protect my sleep. I've shipped better code at 9am after real rest than at midnight running on nothing — I plan my work around that, not against it.
 
-If none of that shows up in a commit history, that's the point — it's what makes the commit history sustainable.
+> If none of that shows up in a commit history, that's the point — it's what makes the commit history sustainable.
 
 <!-- if you found this, you also read EXP-01 through 03 above. that's the kind of curiosity I actually hire for. -->
 
@@ -380,6 +512,7 @@ If none of that shows up in a commit history, that's the point — it's what mak
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
+<a name="currently_building"></a>
 ## `CURRENTLY_BUILDING`
 
 ```python
